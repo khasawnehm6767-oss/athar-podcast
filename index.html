@@ -11,6 +11,7 @@
             --text-color: #ffffff;
             --nav-bg: rgba(0, 0, 0, 0.9);
             --card-bg: #2a2a2a;
+            --border-color: #444444;
         }
 
         body {
@@ -22,7 +23,7 @@
             line-height: 1.6;
         }
 
-        /* القائمة العلوية (Navbar) */
+        /* القائمة العلوية */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -32,7 +33,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .logo {
@@ -44,33 +45,38 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 25px;
             margin: 0;
             padding: 0;
         }
 
         .nav-links li a {
-            color: #ccc;
+            color: #cccccc;
             text-decoration: none;
             transition: color 0.3s;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         .nav-links li a:hover {
-            color: #fff;
+            color: var(--text-color);
         }
 
         .btn-login {
-            background-color: #333;
-            color: #fff;
-            padding: 8px 15px;
+            background-color: #222222;
+            color: var(--text-color);
+            padding: 8px 16px;
             border-radius: 4px;
             text-decoration: none;
             font-size: 0.85rem;
-            border: 1px solid #444;
+            border: 1px solid var(--border-color);
+            transition: background 0.3s;
         }
 
-        /* القسم الرئيسي (Hero) */
+        .btn-login:hover {
+            background-color: #333333;
+        }
+
+        /* القسم الرئيسي (الواجهة) */
         .hero {
             text-align: center;
             padding: 100px 20px;
@@ -85,14 +91,14 @@
 
         .hero p {
             font-size: 1.2rem;
-            color: #888;
+            color: #888888;
             margin-bottom: 40px;
         }
 
         .btn-hero {
             background: linear-gradient(135deg, #d69e2e, #b7791f);
-            color: #fff;
-            padding: 12px 30px;
+            color: var(--text-color);
+            padding: 12px 32px;
             border: none;
             border-radius: 4px;
             font-size: 1.1rem;
@@ -114,8 +120,9 @@
         .section-title {
             text-align: center;
             margin-bottom: 40px;
-            color: #fff;
-            font-size: 2rem;
+            color: var(--text-color);
+            font-size: 2.2rem;
+            position: relative;
         }
 
         .grid {
@@ -128,7 +135,7 @@
             background: var(--card-bg);
             padding: 35px;
             border-radius: 8px;
-            border: 1px solid #444;
+            border: 1px solid var(--border-color);
             transition: transform 0.3s, border-color 0.3s;
         }
 
@@ -144,22 +151,34 @@
 
         .card h3 {
             margin-top: 0;
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             margin-bottom: 15px;
         }
 
         .card p {
-            color: #aaa;
+            color: #aaaaaa;
             font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .audio-player-wrapper {
+            margin-top: 25px;
+            background: #333333;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .audio-player {
+            width: 100%;
         }
 
         /* تذييل الصفحة */
         footer {
             text-align: center;
             padding: 40px;
-            background: #111;
-            color: #666;
-            border-top: 1px solid #222;
+            background: #111111;
+            color: #666666;
+            border-top: 1px solid #222222;
             margin-top: 80px;
         }
     </style>
@@ -174,9 +193,8 @@
             <li><a href="#">الحلقات</a></li>
             <li><a href="#">من نحن</a></li>
             <li><a href="#">تواصل معنا</a></li>
-            <li><a href="#">شروط الاستخدام</a></li>
         </ul>
-        <a href="#" class="btn-login">تسجيل الدخول / لوحة الإدارة</a>
+        <a href="#" class="btn-login">تسجيل الدخول</a>
     </nav>
 
     <div class="hero">
@@ -186,7 +204,34 @@
     </div>
 
     <div class="container">
-        <h2 class="section-title">ميزات المنصة المتقدمة</h2>
+        <h2 class="section-title">الحلقات المتاحة</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="feature-icon">🎙️</div>
+                <h3>حلقة: مستقبل الإعلام الرقمي</h3>
+                <p>استكشف كيف تعمل التكنولوجيا الحديثة على إعادة صياغة المحتوى الرقمي وتطوير الأداء الصوتي.</p>
+                <div class="audio-player-wrapper">
+                    <audio controls class="audio-player">
+                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                        متصفحك لا يدعم تشغيل الملفات الصوتية.
+                    </audio>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="feature-icon">🎧</div>
+                <h3>حلقة: القيادة في العصر الحديث</h3>
+                <p>نتناول أحدث المنهجيات في إدارة المشاريع وتأثيرها الإيجابي المستدام في المجتمعات.</p>
+                <div class="audio-player-wrapper">
+                    <audio controls class="audio-player">
+                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+                        متصفحك لا يدعم تشغيل الملفات الصوتية.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 80px;">ميزات المنصة المتقدمة</h2>
         <div class="grid">
             <div class="card">
                 <div class="feature-icon">📊</div>
