@@ -6,12 +6,11 @@
     <title>أثر بودكاست | Athar Podcast</title>
     <style>
         :root {
-            --primary-color: #2b6cb0;
-            --secondary-color: #2c7a7b;
-            --accent-color: #ed8936;
-            --bg-color: #f7fafc;
-            --text-color: #2d3748;
-            --card-bg: #ffffff;
+            --primary-color: #d69e2e;
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --nav-bg: rgba(0, 0, 0, 0.9);
+            --card-bg: #2a2a2a;
         }
 
         body {
@@ -23,145 +22,185 @@
             line-height: 1.6;
         }
 
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        /* القائمة العلوية (Navbar) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: var(--nav-bg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        .slogan {
-            font-size: 1.2rem;
+        .logo {
+            font-size: 1.5rem;
             font-weight: bold;
-            margin-top: 15px;
-            background: rgba(255, 255, 255, 0.25);
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 25px;
-            letter-spacing: 1px;
+            color: var(--text-color);
         }
 
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links li a:hover {
+            color: #fff;
+        }
+
+        .btn-login {
+            background-color: #333;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            border: 1px solid #444;
+        }
+
+        /* القسم الرئيسي (Hero) */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: radial-gradient(circle, #2a2a2a 0%, #111111 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        .btn-hero {
+            background: linear-gradient(135deg, #d69e2e, #b7791f);
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .btn-hero:hover {
+            opacity: 0.9;
+        }
+
+        /* الحاوية */
         .container {
             max-width: 1100px;
-            margin: 40px auto;
+            margin: 60px auto;
             padding: 0 20px;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 35px;
-            color: var(--primary-color);
+            margin-bottom: 40px;
+            color: #fff;
             font-size: 2rem;
-            position: relative;
         }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            gap: 30px;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.04);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 4px solid var(--primary-color);
+            padding: 35px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
 
         .card h3 {
             margin-top: 0;
-            color: var(--text-color);
             font-size: 1.4rem;
-        }
-
-        .audio-player-wrapper {
-            margin-top: 20px;
-            background: #edf2f7;
-            padding: 15px;
-            border-radius: 8px;
-        }
-
-        .audio-player {
-            width: 100%;
-        }
-
-        .feature-icon {
-            font-size: 2rem;
             margin-bottom: 15px;
         }
 
+        .card p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        /* تذييل الصفحة */
         footer {
             text-align: center;
             padding: 40px;
-            background: #1a202c;
-            color: white;
-            margin-top: 60px;
+            background: #111;
+            color: #666;
+            border-top: 1px solid #222;
+            margin-top: 80px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>منصة أثر بودكاست</h1>
-        <div class="slogan">أصل ثابت .. وأثر خالد</div>
-    </header>
+    <nav class="navbar">
+        <div class="logo">أثر بودكاست</div>
+        <ul class="nav-links">
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#">الاستوديو</a></li>
+            <li><a href="#">الحلقات</a></li>
+            <li><a href="#">من نحن</a></li>
+            <li><a href="#">تواصل معنا</a></li>
+            <li><a href="#">شروط الاستخدام</a></li>
+        </ul>
+        <a href="#" class="btn-login">تسجيل الدخول / لوحة الإدارة</a>
+    </nav>
+
+    <div class="hero">
+        <h1>أصل ثابت .. وأثر خالد</h1>
+        <p>فضاء رقمي يجمع بين الرصانة المعرفية والجاذبية السينمائية</p>
+        <button class="btn-hero">استكشف الاستوديو</button>
+    </div>
 
     <div class="container">
-        <h2 class="section-title">الحلقات المتاحة</h2>
+        <h2 class="section-title">ميزات المنصة المتقدمة</h2>
         <div class="grid">
             <div class="card">
-                <div class="feature-icon">🎙️</div>
-                <h3>حلقة: مستقبل الإعلام الرقمي</h3>
-                <p>استكشف كيف تعمل التكنولوجيا الحديثة على إعادة صياغة المحتوى الرقمي وتطوير الأداء الصوتي.</p>
-                <div class="audio-player-wrapper">
-                    <audio controls class="audio-player">
-                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-                        متصفحك لا يدعم تشغيل الملفات الصوتية.
-                    </audio>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="feature-icon">🎧</div>
-                <h3>حلقة: القيادة في العصر الحديث</h3>
-                <p>نتناول أحدث المنهجيات في إدارة المشاريع وتأثيرها الإيجابي المستدام في المجتمعات.</p>
-                <div class="audio-player-wrapper">
-                    <audio controls class="audio-player">
-                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-                        متصفحك لا يدعم تشغيل الملفات الصوتية.
-                    </audio>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="section-title" style="margin-top: 70px;">ميزات المنصة المتقدمة</h2>
-        <div class="grid">
-            <div class="card" style="border-top-color: var(--secondary-color);">
                 <div class="feature-icon">📊</div>
                 <h3>تحليل الصوت (Audio Analysis)</h3>
                 <p>تقنية مدمجة لتحليل جودة ونبرة الصوت داخل الحلقات، لضمان أعلى جودة للمستمعين وتقديم بيانات حول مسارات الصوت.</p>
             </div>
 
-            <div class="card" style="border-top-color: var(--accent-color);">
+            <div class="card">
                 <div class="feature-icon">🤖</div>
                 <h3>استنساخ الصوت (Voice Cloning)</h3>
                 <p>ميزة متطورة تتيح إنشاء وتخصيص تجارب صوتية واقعية ومطابقة لأصحاب المحتوى بلغات متعددة.</p>
             </div>
 
-            <div class="card" style="border-top-color: #48bb78;">
+            <div class="card">
                 <div class="feature-icon">🎥</div>
                 <h3>تحويل النص إلى فيديو (Text-to-Video)</h3>
                 <p>أداة لإنتاج مقاطع مرئية قصيرة مصحوبة بمؤثرات صوتية، معتمدة على النصوص المكتوبة الخاصة بالحلقة.</p>
