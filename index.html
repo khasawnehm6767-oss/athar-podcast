@@ -1,222 +1,1125 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أثر بودكاست | Athar Podcast</title>
+    <title id="pageTitle">أثر بودكاست | أصل ثابت.. وأثر خالد</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --primary-color: #d69e2e;
-            --bg-color: #1a1a1a;
-            --text-color: #ffffff;
-            --nav-bg: rgba(0, 0, 0, 0.9);
-            --card-bg: #2a2a2a;
-            --border-color: #444444;
+            --bg-color: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text-color: #f5f5f5;
+            --text-secondary: #a1a1a1;
+            --accent-color: #c5a059;
+            --border-color: #333333;
+            --overlay-bg: rgba(0, 0, 0, 0.95);
+            --main-font: 'Cairo', sans-serif;
+            --amiri-font: 'Amiri', serif;
+        }
+
+        [lang="en"] {
+            --main-font: 'Montserrat', sans-serif;
+            --amiri-font: 'Montserrat', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            margin: 0;
-            padding: 0;
+            font-family: var(--main-font);
             line-height: 1.6;
+            transition: all 0.3s ease;
+            scroll-behavior: smooth;
         }
 
-        /* القائمة العلوية */
-        .navbar {
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            background-color: var(--nav-bg);
+            padding: 20px 60px;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(15, 15, 15, 0.95);
             position: sticky;
             top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            backdrop-filter: blur(12px);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--text-color);
-        }
-
-        .nav-links {
-            list-style: none;
+            font-family: var(--amiri-font);
+            font-size: 28px;
+            color: var(--accent-color);
+            font-weight: 700;
             display: flex;
-            gap: 25px;
-            margin: 0;
-            padding: 0;
+            align-items: center;
+            gap: 15px;
         }
 
-        .nav-links li a {
-            color: #cccccc;
+        .logo i {
+            color: var(--accent-color);
+            font-size: 32px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a, nav button {
+            color: var(--text-color);
             text-decoration: none;
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--main-font);
             transition: color 0.3s;
-            font-size: 0.95rem;
         }
 
-        .nav-links li a:hover {
-            color: var(--text-color);
+        nav a:hover, nav button:hover {
+            color: var(--accent-color);
         }
 
-        .btn-login {
-            background-color: #222222;
-            color: var(--text-color);
-            padding: 8px 16px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            border: 1px solid var(--border-color);
-            transition: background 0.3s;
+        .lang-toggle-btn {
+            background: var(--accent-color);
+            color: #0f0f0f;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
         }
 
-        .btn-login:hover {
-            background-color: #333333;
-        }
-
-        /* القسم الرئيسي (الواجهة) */
         .hero {
+            padding: 100px 60px;
             text-align: center;
-            padding: 100px 20px;
-            background: radial-gradient(circle, #2a2a2a 0%, #111111 100%);
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.06) 0%, transparent 70%);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: var(--text-color);
+            font-family: var(--amiri-font);
+            font-size: 64px;
+            margin-bottom: 15px;
+            color: #fff;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: #888888;
-            margin-bottom: 40px;
+            font-size: 20px;
+            color: var(--accent-color);
+            margin-bottom: 35px;
         }
 
-        .btn-hero {
-            background: linear-gradient(135deg, #d69e2e, #b7791f);
-            color: var(--text-color);
-            padding: 12px 32px;
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #0f0f0f;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 700;
             border: none;
-            border-radius: 4px;
-            font-size: 1.1rem;
+            border-radius: 8px;
             cursor: pointer;
-            transition: opacity 0.3s;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+            display: inline-block;
         }
 
-        .btn-hero:hover {
-            opacity: 0.9;
+        .btn-primary:hover {
+            background-color: #d4b16a;
+            transform: translateY(-2px);
         }
 
-        /* الحاوية */
-        .container {
-            max-width: 1100px;
-            margin: 60px auto;
-            padding: 0 20px;
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0 50px;
+            flex-wrap: wrap;
+            padding: 0 15px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: var(--main-font);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-color);
+            color: #0f0f0f;
+            border-color: var(--accent-color);
+        }
+
+        .episodes {
+            padding: 20px 60px 80px;
+            max-width: 1300px;
+            margin: 0 auto;
         }
 
         .section-title {
+            font-family: var(--amiri-font);
+            font-size: 42px;
             text-align: center;
             margin-bottom: 40px;
-            color: var(--text-color);
-            font-size: 2.2rem;
+            color: var(--accent-color);
         }
 
-        .grid {
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 45px;
+        }
+
+        .episode-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .episode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .episode-content {
+            padding: 30px;
+        }
+
+        .tag {
+            color: var(--accent-color);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .episode-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-family: var(--amiri-font);
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .episode-desc {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        .player-container {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .play-btn {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background-color: #222;
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+
+        .studio-section {
+            padding: 80px 60px;
+            background: linear-gradient(180deg, rgba(197, 160, 89, 0.02) 0%, rgba(0, 0, 0, 0.1) 100%);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .studio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            gap: 35px;
+            max-width: 1350px;
+            margin: 0 auto;
         }
 
-        .card {
-            background: var(--card-bg);
-            padding: 35px;
-            border-radius: 8px;
+        .studio-card {
+            background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            transition: transform 0.3s, border-color 0.3s;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .card:hover {
+        .studio-card:hover {
             transform: translateY(-5px);
-            border-color: var(--primary-color);
+            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.1);
+            border-color: var(--accent-color);
         }
 
-        .feature-icon {
-            font-size: 2.5rem;
+        .studio-card i {
+            font-size: 40px;
+            color: var(--accent-color);
             margin-bottom: 20px;
         }
 
-        .card h3 {
-            margin-top: 0;
-            font-size: 1.35rem;
-            margin-bottom: 15px;
+        .studio-card h3 {
+            font-family: var(--amiri-font);
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 12px;
         }
 
-        .card p {
-            color: #aaaaaa;
-            font-size: 0.95rem;
-            line-height: 1.6;
+        .studio-card p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 20px;
         }
 
-        /* تذييل الصفحة */
+        .tool-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            text-align: right;
+        }
+
+        .tool-form label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: -3px;
+            cursor: pointer;
+        }
+
+        .form-input-control {
+            width: 100%;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-color);
+            font-family: var(--main-font);
+            font-size: 13px;
+        }
+
+        .form-input-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .tool-result {
+            display: none;
+            margin-top: 15px;
+            background: rgba(197, 160, 89, 0.08);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .tool-spinner {
+            display: none;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .custom-section {
+            padding: 80px 60px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            font-family: var(--main-font);
+            font-size: 15px;
+            resize: none;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .modal {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--overlay-bg);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 16px;
+            width: 650px;
+            max-width: 92%;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+
+        [dir="ltr"] .close-modal {
+            right: auto;
+            left: 25px;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+
+        .modal-content h3 {
+            font-family: var(--amiri-font);
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .terms-content {
+            text-align: right; 
+        }
+
+        .terms-content h1 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 15px;
+        }
+
+        .terms-content h2 {
+            color: var(--accent-color);
+            margin-top: 30px;
+            font-size: 1.4rem;
+            border-right: 4px solid var(--accent-color);
+            padding-right: 10px;
+        }
+
+        .terms-content p, .terms-content li {
+            color: var(--text-color);
+            font-size: 1.05rem;
+        }
+
+        .terms-content ul {
+            padding-right: 25px;
+        }
+
+        .terms-content li {
+            margin-bottom: 12px;
+        }
+
+        .terms-content .divider {
+            border: 0;
+            height: 1px;
+            background: var(--border-color);
+            margin: 30px 0;
+        }
+
+        .terms-content .alert-box {
+            background: rgba(197, 160, 89, 0.05);
+            padding: 24px;
+            border: 1px solid var(--accent-color);
+            border-radius: 12px;
+            margin-top: 35px;
+            text-align: center;
+        }
+
+        .terms-content .checkbox-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .terms-content input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent-color);
+            cursor: pointer;
+        }
+
         footer {
             text-align: center;
-            padding: 40px;
-            background: #111111;
-            color: #666666;
-            border-top: 1px solid #222222;
-            margin-top: 80px;
+            padding: 50px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+                width: 100%;
+            }
+            
+            nav a, nav button {
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .episodes, .studio-section, .custom-section {
+                padding: 40px 20px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .episodes-grid, .studio-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .modal-content {
+                width: 90%;
+                padding: 25px;
+            }
         }
     </style>
 </head>
-<body>
+<body id="body">
 
-    <nav class="navbar">
-        <div class="logo">أثر بودكاست</div>
-        <ul class="nav-links">
-            <li><a href="#">الرئيسية</a></li>
-            <li><a href="#">الاستوديو</a></li>
-            <li><a href="#">الحلقات</a></li>
-            <li><a href="#">من نحن</a></li>
-            <li><a href="#">تواصل معنا</a></li>
-        </ul>
-        <a href="#" class="btn-login">تسجيل الدخول</a>
-    </nav>
+    <div class="modal" id="welcomeTermsModal" style="display: none;">
+        <div class="modal-content terms-content" style="max-height: 85vh; overflow-y: auto; width: 650px; max-width: 92%;">
+            <span class="close-modal" onclick="closeTermsModal()">&times;</span>
+            <h1>شروط الاستخدام وسياسة الاستخدام المقبول</h1>
+            <p>أهلاً بك في منصة <strong>"أثر بودكاست"</strong>. نسعى من خلال هذه المنصة إلى بناء بيئة رقمية آمنة، رصينة، وملتزمة بالمعايير الأخلاقية والمجتمعية والإنسانية.</p>
+            <p>لضمان تجربة إيجابية للجميع، يُعد الالتزام بهذه الشروط شرطاً أساسياً لاستخدام المنصة والوصول إلى خدماتها.</p>
+            
+            <hr class="divider">
 
-    <div class="hero">
-        <h1>أصل ثابت .. وأثر خالد</h1>
-        <p>فضاء رقمي يجمع بين الرصانة المعرفية والجاذبية السينمائية</p>
-        <button class="btn-hero">استكشف الاستوديو</button>
-    </div>
+            <h2>1. سياسة الاستخدام المقبول والمحظورات</h2>
+            <p>تلتزم المنصة بالحفاظ على بيئة خالية من أي محتوى مخالف للآداب العامة أو القوانين. ويُحظر تماماً القيام بأي من الأفعال التالية:</p>
+            <ul>
+                <li><strong>المحتوى الجنسي والعري:</strong> يُمنع نشر، ترويج، أو مشاركة أي مواد إباحية، أفلام جنسية، أو صور ومقاطع فيديو تتضمن مشاهد عري أو خادشة للحياء.</li>
+                <li><strong>خطاب الكراهية والعنف:</strong> يُحظر نشر أي محتوى يحرض على العنف، أو الكراهية، أو التمييز العرقي، أو الديني، أو الطائفي، أو الجغرافي.</li>
+                <li><strong>إيذاء الغير والتشهير:</strong> يُمنع استخدام المنصة للإساءة للأفراد أو المجموعات، أو التنمر، أو التشهير، أو انتهاك الخصوصية، أو نشر معلومات شخصية للآخرين دون إذن.</li>
+                <li><strong>المحتوى المضلل وغير القانوني:</strong> يُحظر استخدام الأدوات الرقمية (مثل أدوات الاستوديو أو الدبلجة) لتوليد محتوى ينتهك حقوق الملكية الفكرية، أو يروج لأنشطة غير مشروعة.</li>
+            </ul>
 
-    <div class="container">
-        <h2 class="section-title">ميزات المنصة المتقدمة</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="feature-icon">📊</div>
-                <h3>تحليل الصوت (Audio Analysis)</h3>
-                <p>تقنية مدمجة لتحليل جودة ونبرة الصوت داخل الحلقات، لضمان أعلى جودة للمستمعين وتقديم بيانات حول مسارات الصوت.</p>
-            </div>
+            <hr class="divider">
 
-            <div class="card">
-                <div class="feature-icon">🤖</div>
-                <h3>استنساخ الصوت (Voice Cloning)</h3>
-                <p>ميزة متطورة تتيح إنشاء وتخصيص تجارب صوتية واقعية ومطابقة لأصحاب المحتوى بلغات متعددة.</p>
-            </div>
+            <h2>2. الشفافية والإفصاح عن المحتوى</h2>
+            <ul>
+                <li><strong>الشفافية في الإنتاج:</strong> عند استخدام أي من أدوات الذكاء الاصطناعي المتوفرة في المنصة (مثل: استنساخ الأصوات، تحويل النص إلى فيديو، الترجمة والدبلجة، أو التصميم)، يلتزم المستخدم بإضافة إشارة واضحة (مثل عبارة <em>"تم توليد هذا المقطع باستخدام الذكاء الاصطناعي"</em>) في وصف المادة أو بداخلها.</li>
+                <li><strong>منع التضليل:</strong> يُحظر منعاً باتاً استخدام المحتوى المولّد بالذكاء الاصطناعي بهدف تضليل المشاهدين، أو انتحال شخصيات حقيقية، أو نشر الشائعات.</li>
+            </ul>
 
-            <div class="card">
-                <div class="feature-icon">🎥</div>
-                <h3>تحويل النص إلى فيديو (Text-to-Video)</h3>
-                <p>أداة لإنتاج مقاطع مرئية قصيرة مصحوبة بمؤثرات صوتية، معتمدة على النصوص المكتوبة الخاصة بالحلقة.</p>
+            <hr class="divider">
+
+            <h2>3. الإجراءات والعواقب</h2>
+            <p>تحتفظ إدارة منصة "أثر بودكاست" بالحق الكامل والصارم في اتخاذ الإجراءات التالية في حال ثبوت مخالفة أي من البنود المذكورة:</p>
+            <ul>
+                <li><strong>الإيقاف الفوري:</strong> حظر الحساب وإلغاء الوصول إلى المنصة دون سابق إنذار.</li>
+                <li><strong>حذف المحتوى:</strong> إزالة أي مواد أو ملفات مخالفة فور اكتشافها.</li>
+                <li><strong>المساءلة القانونية:</strong> التعاون مع الجهات المختصة والإبلاغ عن أي نشاط يهدد أمن وسلامة المجتمع.</li>
+            </ul>
+
+            <hr class="divider">
+
+            <h2>4. الموافقة على الشروط</h2>
+            <p><em>تنبيه هام:</em> يمثل استخدامك للمنصة إقراراً صريحاً بأنك قد قرأت، وفهمت، ووافقت على الالتزام الكامل بهذه الشروط والضوابط.</p>
+
+            <div class="alert-box-container">
+                <div class="alert-box">
+                    <p>بالموافقة على الشروط أدناه، يمكنك الدخول إلى المنصة والاستفادة من خدماتها.</p>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="agreeTerms">
+                        <label for="agreeTerms" id="welcomeAgreeLabel">أوافق على الشروط والأحكام وسياسة الاستخدام المقبول.</label>
+                    </div>
+                    <button onclick="acceptTerms()" id="welcomeBtn" class="btn-primary" style="width: 100%; margin-top: 10px;">دخول المنصة</button>
+                </div>
             </div>
         </div>
     </div>
 
+    <header>
+        <div class="logo" id="logo">
+            <i class="fas fa-podcast"></i>
+            <div style="display: flex; flex-direction: column;">
+                <span id="logoText">أثر بودكاست</span>
+                <span id="logoSlogan" style="font-size: 11px; color: #a1a1a1; font-family: var(--amiri-font);">أصل ثابت.. وأثر خالد</span>
+            </div>
+        </div>
+        <nav>
+            <a href="#" id="navHome">الرئيسية</a>
+            <a href="#studioSection" id="navStudio">الاستوديو</a>
+            <a href="#episodes" id="navEpisodes">الحلقات</a>
+            <a href="#aboutSection" id="navAbout">من نحن</a>
+            <a href="#contactSection" id="navContact">تواصل معنا</a>
+            <a href="#" onclick="openTermsModal()" id="navTerms">شروط الاستخدام</a>
+            <button onclick="openModal()" id="navLogin">تسجيل الدخول / لوحة الإدارة</button>
+            <button class="lang-toggle-btn" onclick="toggleLanguage()" id="langBtn">EN</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1 id="heroTitle">أصل ثابت.. وأثر خالد</h1>
+        <p id="heroDesc">فضاء رقمي يجمع بين الرصانة المعرفية والجاذبية السينمائية</p>
+        <a href="#studioSection" id="heroBtn" class="btn-primary" style="width: auto;">استكشف الاستوديو</a>
+    </section>
+
+    <div class="filter-container">
+        <button class="filter-btn active" id="fAll" onclick="filterEpisodes('all')">جميع الحلقات</button>
+        <button class="filter-btn" id="fHuman" onclick="filterEpisodes('human')">حوارات إنسانية</button>
+        <button class="filter-btn" id="fPhil" onclick="filterEpisodes('philosophy')">فلسفة وأدب</button>
+    </div>
+
+    <section class="episodes" id="episodes">
+        <h2 class="section-title" id="sectionTitle">مكتبة الحلقات</h2>
+        <div class="episodes-grid">
+            <div class="episode-card" data-category="human">
+                <div class="episode-content">
+                    <span class="tag" id="ep1Tag">الحلقة 1 | حوارات إنسانية</span>
+                    <h3 class="episode-title" id="ep1Title">الرابط المفقود: بين التكنولوجيا والأسرة</h3>
+                    <p class="episode-desc" id="ep1Desc">كيف نحافظ على الأصل الثابت في ظل التحديات الرقمية، ونستعيد الدفء الإنساني الذي فقدناه؟</p>
+                    <div class="player-container">
+                        <button class="play-btn" onclick="togglePlay(this)"><i class="fas fa-play"></i></button>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span style="font-size: 12px; color: var(--text-secondary);">20:15</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="episode-card" data-category="philosophy">
+                <div class="episode-content">
+                    <span class="tag" id="ep2Tag">الحلقة 2 | فلسفة وأدب</span>
+                    <h3 class="episode-title" id="ep2Title">أصول الفكر المستدام</h3>
+                    <p class="episode-desc" id="ep2Desc">استكشاف الجذور العميقة التي تترك أثراً خالداً في وعينا وحياتنا اليومية.</p>
+                    <div class="player-container">
+                        <button class="play-btn" onclick="togglePlay(this)"><i class="fas fa-play"></i></button>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span style="font-size: 12px; color: var(--text-secondary);">18:40</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="studio-section" id="studioSection">
+        <h2 class="section-title" id="studioTitle">استوديو أثر الرقمي</h2>
+        <div class="studio-grid">
+            
+            <div class="studio-card">
+                <i class="fas fa-magic"></i>
+                <h3>استنساخ الصوت</h3>
+                <p>تطبيق معالجة وتوليد الصوت بدقة عالية مع نبرة سينمائية.</p>
+                
+                <div class="tool-form" id="tool1">
+                    <label>النص المراد توليده</label>
+                    <input type="text" id="input1" class="form-input-control" placeholder="اكتب النص هنا...">
+                    <button class="btn-primary" id="btnStart" onclick="runTool(1)" style="padding: 6px; font-size: 12px; width: 100%; margin-top: 5px;">تشغيل الأداة</button>
+                </div>
+                <div class="tool-spinner" id="spinner1">
+                    <i class="fas fa-spinner fa-spin" style="color: var(--accent-color); font-size: 24px;"></i>
+                    <p style="color: var(--text-secondary); margin-top: 8px; font-size: 13px;">جاري المعالجة والتحميل...</p>
+                </div>
+                <div class="tool-result" id="res1">
+                    <p style="color: var(--accent-color);">تم استنساخ الصوت بنجاح.</p>
+                    <button class="btn-primary" onclick="resetTool(1)" style="padding: 3px 10px; font-size: 11px; margin-top: 8px;">إعادة تعيين</button>
+                </div>
+            </div>
+
+            <div class="studio-card">
+                <i class="fas fa-closed-captioning"></i>
+                <h3>الدبلجة والترجمة</h3>
+                <p>ضبط النطق الصوتي للملفات الصوتية بعدة لغات وتحليلها.</p>
+                
+                <div class="tool-form" id="tool2">
+                    <label>أدخل رابط الفيديو/الصوت (فحص وتحليل)</label>
+                    <input type="text" id="input2" class="form-input-control" placeholder="https://...">
+                    <label style="margin-top: 8px;">أو ارفع ملفاً:</label>
+                    <input type="file" id="file2" class="form-input-control">
+                    <button class="btn-primary" onclick="runTool(2)" style="padding: 6px; font-size: 12px; width: 100%; margin-top: 5px;">تشغيل الأداة</button>
+                </div>
+                <div class="tool-spinner" id="spinner2">
+                    <i class="fas fa-spinner fa-spin" style="color: var(--accent-color); font-size: 24px;"></i>
+                    <p style="color: var(--text-secondary); margin-top: 8px; font-size: 13px;">جاري المعالجة والتحميل...</p>
+                </div>
+                <div class="tool-result" id="res2">
+                    <p style="color: var(--accent-color);">تم تحليل الصوت والدبلجة بنجاح.</p>
+                    <button class="btn-primary" onclick="resetTool(2)" style="padding: 3px 10px; font-size: 11px; margin-top: 8px;">إعادة تعيين</button>
+                </div>
+            </div>
+
+            <div class="studio-card">
+                <i class="fas fa-photo-video"></i>
+                <h3>التوليد البصري</h3>
+                <p>صناعة وسائط سينمائية بدقة 4K مع تأثيرات حركية (نص إلى فيديو).</p>
+                
+                <div class="tool-form" id="tool3">
+                    <label>الوصف البصري</label>
+                    <input type="text" id="input3" class="form-input-control" placeholder="مثل: شمعة وظلال على جدار حجري">
+                    <label style="margin-top: 8px;">أو ارفع ملفاً:</label>
+                    <input type="file" id="file3" class="form-input-control">
+                    <button class="btn-primary" onclick="runTool(3)" style="padding: 6px; font-size: 12px; width: 100%; margin-top: 5px;">تشغيل الأداة</button>
+                </div>
+                <div class="tool-spinner" id="spinner3">
+                    <i class="fas fa-spinner fa-spin" style="color: var(--accent-color); font-size: 24px;"></i>
+                    <p style="color: var(--text-secondary); margin-top: 8px; font-size: 13px;">جاري المعالجة والتحميل...</p>
+                </div>
+                <div class="tool-result" id="res3">
+                    <p style="color: var(--accent-color);">تم توليد المشهد والفيديو بنجاح.</p>
+                    <button class="btn-primary" onclick="resetTool(3)" style="padding: 3px 10px; font-size: 11px; margin-top: 8px;">إعادة تعيين</button>
+                </div>
+            </div>
+
+            <div class="studio-card">
+                <i class="fas fa-microphone"></i>
+                <h3>التسجيل المباشر</h3>
+                <p>سجل صوتك مباشرة عبر المتصفح بجودة عالية واستوديو احترافي.</p>
+                
+                <div class="tool-form" id="tool4">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span id="recTimer" style="font-size: 15px; color: var(--accent-color); font-family: monospace;">00:00</span>
+                        <span id="recStatus" style="font-size: 12px; color: var(--text-secondary);">متوقف</span>
+                    </div>
+                    <button id="btnStartRec" class="btn-primary" onclick="startRecording()" style="width: 100%; padding: 6px; font-size: 13px;">بدء التسجيل</button>
+                    <button id="btnStopRec" class="btn-primary" onclick="stopRecording()" style="width: 100%; padding: 6px; font-size: 13px; margin-top: 5px; background-color: #555; color: #fff; border: 1px solid #666;" disabled>إيقاف التسجيل</button>
+                    
+                    <audio id="recordedAudio" controls style="display: none; width: 100%; margin-top: 12px;"></audio>
+                    <button id="btnDownload" class="btn-primary" onclick="downloadRecording()" style="display: none; padding: 6px; font-size: 12px; width: 100%; margin-top: 8px; background-color: var(--accent-color); color: #0f0f0f;">تحميل التسجيل</button>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="custom-section" id="aboutSection">
+        <h2 class="section-title" id="aboutTitle">عن أثر بودكاست</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-secondary); line-height: 1.8; font-size: 16px;">
+            <p><strong>أثر بودكاست</strong> هو فضاء رقمي يجمع بين الرصانة المعرفية والجاذبية السينمائية. نهدف من خلاله إلى تقديم محتوى صوتي وبصري هادف وعميق يترك أثراً ممتداً في الوعي الإنساني، متبنين شعار: <em>أصل ثابت.. وأثر خالد</em>.</p>
+        </div>
+    </section>
+
+    <section class="custom-section" id="contactSection" style="border-top: 1px solid var(--border-color);">
+        <h2 class="section-title" id="contactTitle">تواصل معنا</h2>
+        <div style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px;">
+            <input type="text" id="contactNameInput" class="form-input" placeholder="اسمك الكريم" required>
+            <input type="email" id="contactEmailInput" class="form-input" placeholder="البريد الإلكتروني" required>
+            <textarea id="contactMessageInput" class="form-textarea" rows="4" placeholder="اكتب رسالتك هنا..." required></textarea>
+            <button onclick="submitContactForm()" id="contactSubmit" class="btn-primary" style="width: 100%; padding: 14px;">إرسال</button>
+        </div>
+    </section>
+
+    <div class="modal" id="loginModal" style="display: none;">
+        <div class="modal-content" style="max-height: 450px; overflow-y: auto;">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle">دخول لوحة التحكم</h3>
+            <form class="modal-form" id="loginForm" onsubmit="event.preventDefault(); submitLoginForm();" style="display: flex; flex-direction: column; gap: 12px; text-align: right;">
+                <label style="color: var(--text-secondary); font-size: 13px;">اسم المستخدم:</label>
+                <input type="text" id="modalUser" class="form-input" placeholder="أدخل اسم المستخدم" required>
+                
+                <label style="color: var(--text-secondary); font-size: 13px;">كلمة المرور:</label>
+                <input type="password" id="modalPass" class="form-input" placeholder="أدخل كلمة المرور" required>
+
+                <button type="submit" id="modalSubmit" class="btn-primary" style="width: 100%; padding: 12px; margin-top: 10px;">دخول المنصة</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
-        <p>جميع الحقوق محفوظة © 2026 - منصة أثر بودكاست</p>
+        <p>&copy; 2026 جميع الحقوق محفوظة - منصة أثر بودكاست</p>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <script>
+        let currentLang = 'ar';
+        
+        let mediaRecorder;
+        let audioChunks = [];
+        let timerInterval;
+        let totalSeconds = 0;
+        
+        const translations = {
+            ar: {
+                pageTitle: "أثر بودكاست | أصل ثابت.. وأثر خالد",
+                logoText: "أثر بودكاست",
+                logoSlogan: "أصل ثابت.. وأثر خالد",
+                navHome: "الرئيسية",
+                navStudio: "الاستوديو",
+                navEpisodes: "الحلقات",
+                navAbout: "من نحن",
+                navContact: "تواصل معنا",
+                navTerms: "شروط الاستخدام",
+                navLogin: "تسجيل الدخول / لوحة الإدارة",
+                heroTitle: "أصل ثابت.. وأثر خالد",
+                heroDesc: "فضاء رقمي يجمع بين الرصانة المعرفية والجاذبية السينمائية",
+                heroBtn: "استكشف الاستوديو",
+                fAll: "جميع الحلقات",
+                fHuman: "حوارات إنسانية",
+                fPhil: "فلسفة وأدب",
+                sectionTitle: "مكتبة الحلقات",
+                ep1Tag: "الحلقة 1 | حوارات إنسانية",
+                ep1Title: "الرابط المفقود: بين التكنولوجيا والأسرة",
+                ep1Desc: "كيف نحافظ على الأصل الثابت في ظل التحديات الرقمية، ونستعيد الدفء الإنساني الذي فقدناه؟",
+                ep2Tag: "الحلقة 2 | فلسفة وأدب",
+                ep2Title: "أصول الفكر المستدام",
+                ep2Desc: "استكشاف الجذور العميقة التي تترك أثراً خالداً في وعينا وحياتنا اليومية.",
+                studioTitle: "استوديو أثر الرقمي",
+                aboutTitle: "عن أثر بودكاست",
+                contactTitle: "تواصل معنا",
+                contactSubmit: "إرسال",
+                modalTitle: "دخول لوحة التحكم",
+                modalSubmit: "دخول المنصة",
+                welcomeAgreeLabel: "أوافق على الشروط والأحكام وسياسة الاستخدام المقبول.",
+                welcomeBtn: "دخول المنصة",
+                welcomeSuccess: "تمت الموافقة بنجاح. أهلاً بك في منصة أثر بودكاست.",
+                welcomeAlert: "يرجى الموافقة على الشروط والأحكام أولاً للمتابعة.",
+                alertLoginSuccess: "تم تسجيل الدخول بنجاح إلى لوحة التحكم.",
+                alertContactSuccess: "تم إرسال رسالتك بنجاح، شكراً لتواصلك."
+            },
+            en: {
+                pageTitle: "Athar Podcast | Firm Root... and Immortal Impact",
+                logoText: "Athar Podcast",
+                logoSlogan: "Firm Root... and Immortal Impact",
+                navHome: "Home",
+                navStudio: "Studio",
+                navEpisodes: "Episodes",
+                navAbout: "About Us",
+                navContact: "Contact Us",
+                navTerms: "Terms of Use",
+                navLogin: "Login / Dashboard",
+                heroTitle: "Firm Root... and Immortal Impact",
+                heroDesc: "A digital space combining cognitive sobriety with cinematic appeal",
+                heroBtn: "Explore Studio",
+                fAll: "All Episodes",
+                fHuman: "Human Dialogues",
+                fPhil: "Philosophy & Lit.",
+                sectionTitle: "Episode Library",
+                ep1Tag: "Episode 1 | Human Dialogues",
+                ep1Title: "The Missing Link: Between Tech and Family",
+                ep1Desc: "How do we maintain the firm root amid digital challenges, and regain the human warmth we have lost?",
+                ep2Tag: "Episode 2 | Philosophy & Lit.",
+                ep2Title: "Origins of Sustainable Thought",
+                ep2Desc: "Exploring deep roots that leave an immortal impact on our consciousness and daily lives.",
+                studioTitle: "Athar Digital Studio",
+                aboutTitle: "About Athar Podcast",
+                contactTitle: "Contact Us",
+                contactSubmit: "Send",
+                modalTitle: "Control Panel Login",
+                modalSubmit: "Enter Platform",
+                welcomeAgreeLabel: "I agree to the Terms of Use and Acceptable Use Policy.",
+                welcomeBtn: "Enter Platform",
+                welcomeSuccess: "Accepted successfully. Welcome to Athar Podcast platform.",
+                welcomeAlert: "Please accept the terms and conditions first to continue.",
+                alertLoginSuccess: "Logged in successfully to the control panel.",
+                alertContactSuccess: "Your message has been sent successfully. Thank you for contacting us."
+            }
+        };
+
+        function acceptTerms() {
+            const checkbox = document.getElementById('agreeTerms');
+            if (checkbox.checked) {
+                alert(translations[currentLang].welcomeSuccess);
+                document.getElementById('welcomeTermsModal').style.display = 'none';
+            } else {
+                alert(translations[currentLang].welcomeAlert);
+            }
+        }
+
+        function openTermsModal() {
+            document.getElementById('welcomeTermsModal').style.display = 'flex';
+        }
+
+        function closeTermsModal() {
+            document.getElementById('welcomeTermsModal').style.display = 'none';
+        }
+
+        function openModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function submitLoginForm() {
+            alert(translations[currentLang].alertLoginSuccess);
+            closeModal();
+        }
+
+        function submitContactForm() {
+            const name = document.getElementById('contactNameInput').value;
+            const email = document.getElementById('contactEmailInput').value;
+            const message = document.getElementById('contactMessageInput').value;
+
+            if (name === '' || email === '' || message === '') {
+                alert(currentLang === 'ar' ? "يرجى تعبئة جميع الحقول." : "Please fill in all fields.");
+                return;
+            }
+
+            alert(translations[currentLang].alertContactSuccess);
+            document.getElementById('contactNameInput').value = '';
+            document.getElementById('contactEmailInput').value = '';
+            document.getElementById('contactMessageInput').value = '';
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const htmlRoot = document.getElementById('htmlRoot');
+            
+            if (htmlRoot) {
+                htmlRoot.lang = currentLang;
+                htmlRoot.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            }
+
+            const t = translations[currentLang];
+            for (const key in t) {
+                const el = document.getElementById(key);
+                if (el) {
+                    el.textContent = t[key];
+                }
+            }
+            
+            document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'EN' : 'AR';
+            
+            document.getElementById('contactNameInput').placeholder = currentLang === 'ar' ? "اسمك الكريم" : "Your Name";
+            document.getElementById('contactEmailInput').placeholder = currentLang === 'ar' ? "البريد الإلكتروني" : "Your Email";
+            document.getElementById('contactMessageInput').placeholder = currentLang === 'ar' ? "اكتب رسالتك هنا..." : "Type your message here...";
+        }
+
+        function runTool(toolNumber) {
+            let inputField = document.getElementById('input' + toolNumber);
+            let fileField = document.getElementById('file' + toolNumber);
+
+            if (inputField && inputField.value.trim() === "" && (!fileField || !fileField.value)) {
+                alert(currentLang === 'ar' ? "يرجى تعبئة الحقل قبل التشغيل." : "Please fill out the field before running.");
+                return;
+            }
+
+            document.getElementById('tool' + toolNumber).style.display = 'none';
+            document.getElementById('spinner' + toolNumber).style.display = 'block';
+
+            setTimeout(() => {
+                document.getElementById('spinner' + toolNumber).style.display = 'none';
+                document.getElementById('res' + toolNumber).style.display = 'block';
+            }, 2500);
+        }
+
+        function resetTool(toolNumber) {
+            document.getElementById('res' + toolNumber).style.display = 'none';
+            document.getElementById('tool' + toolNumber).style.display = 'flex';
+
+            if (toolNumber === 1) {
+                document.getElementById('recordedAudio').style.display = 'none';
+                document.getElementById('recordedAudio').src = '';
+                document.getElementById('recTimer').textContent = '00:00';
+                document.getElementById('btnStartRec').disabled = false;
+            }
+
+            if (document.getElementById('file' + toolNumber)) {
+                document.getElementById('file' + toolNumber).value = "";
+            }
+            if (document.getElementById('input' + toolNumber)) {
+                document.getElementById('input' + toolNumber).value = "";
+            }
+        }
+
+        function startRecording() {
+            navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+                
+                mediaRecorder.ondataavailable = e => {
+                    audioChunks.push(e.data);
+                };
+                
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(audioChunks, { 'type': 'audio/ogg; codecs=opus' });
+                    const audioUrl = URL.createObjectURL(blob);
+                    const audio = document.getElementById('recordedAudio');
+                    audio.src = audioUrl;
+                    audio.style.display = 'block';
+                    document.getElementById('btnDownload').style.display = 'block';
+                    
+                    stream.getTracks().forEach(track => track.stop());
+                };
+                
+                mediaRecorder.start();
+                
+                document.getElementById('btnStartRec').disabled = true;
+                document.getElementById('btnStopRec').disabled = false;
+                document.getElementById('recStatus').textContent = currentLang === 'ar' ? "جاري التسجيل..." : "Recording...";
+                document.getElementById('recStatus').style.color = "var(--accent-color)";
+                
+                totalSeconds = 0;
+                clearInterval(timerInterval);
+                timerInterval = setInterval(setTimer, 1000);
+            }).catch(() => {
+                alert(currentLang === 'ar' ? "تعذّر الوصول إلى الميكروفون، يرجى التحقق من الأذونات." : "Unable to access the microphone, please check permissions.");
+            });
+        }
+
+        function setTimer() {
+            ++totalSeconds;
+            let hour = Math.floor(totalSeconds / 3600);
+            let minute = Math.floor((totalSeconds - hour * 3600) / 60);
+            let seconds = totalSeconds - (hour * 3600 + minute * 60);
+            
+            document.getElementById('recTimer').textContent = (minute < 10 ? "0" + minute : minute) + ":" + (seconds < 10 ? "0" + seconds : seconds);
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state !== "inactive") {
+                mediaRecorder.stop();
+                clearInterval(timerInterval);
+                document.getElementById('btnStartRec').disabled = false;
+                document.getElementById('btnStopRec').disabled = true;
+                document.getElementById('recStatus').textContent = currentLang === 'ar' ? "متوقف" : "Stopped";
+                document.getElementById('recStatus').style.color = "var(--text-secondary)";
+            }
+        }
+
+        function downloadRecording() {
+            const audio = document.getElementById('recordedAudio');
+            if (audio.src) {
+                const a = document.createElement('a');
+                a.href = audio.src;
+                a.download = 'recorded-audio.ogg';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        }
+
+        function togglePlay(btn) {
+            let icon = btn.querySelector('i');
+            if (icon.classList.contains('fa-play')) {
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+            } else {
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+            }
+        }
+
+        function filterEpisodes(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            const ev = window.event;
+            if (ev && ev.target) {
+                ev.target.classList.add('active');
+            }
+
+            const cards = document.querySelectorAll('.episode-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // التمرير السلس للأقسام
+        document.getElementById('navAbout').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#aboutSection').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        document.getElementById('navContact').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#contactSection').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
